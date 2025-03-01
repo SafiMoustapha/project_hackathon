@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donner son avis - Hôpital Feedback</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+    <!-- Header -->
+    <header class="bg-blue-600 text-white py-4 px-6 flex justify-between items-center">
+        <h1 class="text-xl font-bold">Hôpital Feedback</h1>
+        <nav>
+            <ul class="flex gap-4">
+                <li><a href="index.html" class="hover:underline">Accueil</a></li>
+                <li><a href="avis.html" class="hover:underline">Donner son avis</a></li>
+                <li><a href="stats.html" class="hover:underline">Statistiques</a></li>
+                <li><a href="contact.html" class="hover:underline">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Formulaire d'avis -->
+    <section class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg mt-10">
+        <h2 class="text-2xl font-bold text-center mb-4">Donnez votre avis</h2>
+        <p class="text-gray-600 text-center mb-6">Votre retour nous aide à améliorer les services hospitaliers.</p>
+        
+        <form action="#" method="POST" class="space-y-4">
+            <div>
+                <label class="block text-gray-700 font-semibold">Nom</label>
+                <input type="text" name="nom" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+
+            <div>
+                <label class="block text-gray-700 font-semibold">E-mail</label>
+                <input type="email" name="email" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+
+            <div>
+                <label class="block text-gray-700 font-semibold">Votre avis</label>
+                <textarea name="avis" rows="4" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+            </div>
+
+            <div>
+                <label class="block text-gray-700 font-semibold">Note</label>
+                <select name="note" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <option value="5">⭐⭐⭐⭐⭐ - Excellent</option>
+                    <option value="4">⭐⭐⭐⭐ - Très bien</option>
+                    <option value="3">⭐⭐⭐ - Moyen</option>
+                    <option value="2">⭐⭐ - Mauvais</option>
+                    <option value="1">⭐ - Très mauvais</option>
+                </select>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+                Envoyer mon avis
+            </button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <!-- <footer class="bg-blue-600 text-white text-center py-4 mt-6">
+        <p>&copy; 2025 Hôpital Feedback - Tous droits réservés.</p>
+    </footer> -->
+
+    <footer class=" box-border bg-cyan-600  mx-auto justify-center w-screen items-center px-10 flex flex-col" >
+
+        <div class="flex items-center justify-center w-full gap-10 mb-10">
+           <div class="flex flex-row my-3">
+          
+               <div class="flex flex-col ">
+                   <img src="logo.jpeg" alt="logo du site " class="w-[150px] h-[150px] mb-3  ">
+                   <p class="italic text-sm">facilite l'accès aux medicaments <br> pour tous.</p>
+               </div>
+   
+              
+               
+           </div>
+
+           
+
+           <div class="flex flex-col my-3">
+               <a href="#" class="font-bold my-3">Accueil</a>
+               <a href="#" class="font-bold my-3">Fonctionnalités</a>
+               <a href="#" class="font-bold my-3">Contact</a>
+               <a href="#" class="font-bold my-3">FAQ</a>
+           </div>
+   
+   
+           
+   
+               <div class="flex flex-col my-3">
+                   <h2 class="font-bold my-3">Contact & Support</h2>
+                   <p class="my-3">•📍123 Rue de l'innovation, Abidjan </p>
+                   <p class="my-3">•📞+225 01 02 03 04 05</p>
+                   <p class="my-3">•📧support@carevoice.ci</p>
+                   
+               </div>
+   
+   
+   
+               <div class="border-r-1 border-cyan-700 mx-2"></div>
+   
+   
+               <div class="flex flex-col my-3">
+                   <div class="flex flex-row my-3">
+                       <p class=" font-bold">•	Nom de l’entreprise : </p>
+                       <p>Care Voice C.V.</p>
+                   </div>
+                   <div class="flex flex-row my-3">
+                       <p class=" font-bold">•	Siège social :</p>
+                       <p>123 Rue de l’Innovation, Abidjan, Côte d’Ivoire.</p>
+                   </div>
+                   <div class="flex flex-row my-3">
+                       <p class=" font-bold">•	Directeur de publication : </p>
+                       <p>[Nom de la personne responsable]</p>
+                   </div>
+                   <div class="flex flex-row my-3">
+                       <p class=" font-bold">•	Hébergement : </p>
+                       <p>123 Rue de l'innovation, Abidjan, +225 01 02 03 04 05</p>
+                   </div>
+                   <div class="flex flex-row my-3">
+                       <p class=" font-bold">•	Numéro d’enregistrement : </p>
+                       <p>01 00 00 00 00</p>
+                   </div>
+                   
+               </div>
+       </div>
+
+
+       <div class="border-b-2 w-1/2 border-cyan-700"></div>
+
+       
+         
+
+      
+       <div class="flex justify-start items-center gap-8 mt-20 ml-10 pl-60  w-full " >
+           <a href="" class="flex flex-row my-3">
+               <i class="fab fa-facebook text-blue-600 text-2xl"></i>
+           </a>
+           <a href="" class="flex flex-row my-3">
+               <i class="fab fa-twitter text-blue-400 text-2xl"></i> 
+           </a>
+           <a href="" class="flex flex-row my-3">
+               <i class="fab fa-instagram text-pink-500 text-2xl"></i>
+           </a>
+           <a href="" class="flex flex-row my-3">
+               <i class="fab fa-whatsapp text-green-500 text-2xl"></i>
+       
+           </a>
+
+           <a href="" class="flex flex-row text-blue-700 text-2xl">
+               <i class="fab fa-linkedin"></i>
+           </a>
+
+           <a href="" class="flex flex-row my-3">
+               <i class="fab fa-tiktok text-black text-2xl"></i>
+           </a>
+
+           <a href="" class="flex flex-row m-3">
+               <i class="fab fa-snapchat-ghost text-yellow-300 text-2xl"></i>
+           </a>
+
+           <p class="font-bold">&copy; 2025 Care Voice - Tous droits réservées </p>
+        </div>    
+   
+          
+   
+       
+       
+   </footer>
+
+</body>
+</html>

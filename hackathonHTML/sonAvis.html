@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avis</title>
+    <link rel="stylesheet" href="../dist/styles.css">
+</head>
+<body class="h-screen w-full flex flex-col p-2" style="background-image: linear-gradient(rgba(4, 62, 39, 0.3), rgba(4, 62, 39, 0.3)), url('https://cdn.pixabay.com/photo/2023/11/30/11/47/ai-generated-8421436_1280.jpg'); background-size: cover; background-position: center;">
+    
+    <header class="h-16 bg-white bg-opacity-90 flex items-center justify-between p-4">
+        <div class="flex items-center">
+            <img class="rounded-full bg-gray-500 mr-4" width="50px" src="../hackathonIMAGES/WhatsApp Image 2025-02-27 à 08.21.18_8091cfb8.jpg" alt="Logo">
+            <h1 class="text-xl md:text-4xl font-bold text-[#119797]">Care Voice</h1>
+        </div>
+        <div id="burger2" class="bg-[#119797] hover:bg-[#03bbbb] h-10 w-10 flex items-center justify-center rounded-full md:hidden cursor-pointer">
+            <span class="text-white text-2xl">&#9776;</span>
+        </div>
+        <nav class="hidden md:block">
+            <ul class="flex">
+                <li class="mx-2"><a href="../index.html" class="text-[#037e7e] hover:underline">Accueil</a></li>
+                <li class="mx-2"><a href="sonAvis.html" class="text-[#037e7e] hover:underline">Donner son avis</a></li>
+                <li class="mx-2"><a href="#" class="text-[#037e7e] hover:underline">Statistiques</a></li>
+                <li class="mx-2"><a href="#" class="text-[#037e7e] hover:underline">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="flex items-center justify-center flex-col mb-4">
+        <form action="" method="post" style="border-radius: 5px;" class="bg-white p-4 shadow-lg mt-4 max-w-2xl mx-auto lg:w-1/2">
+            <h1 class="text-2xl md:text-4xl font-bold text-[#119797] text-center mb-4">Donnez votre avis</h1>
+            <p class="text-[#000000] text-center mb-8 md:text-[1.5rem]">Votre retour nous aide à améliorer les services hospitaliers.</p>
+            
+            <div style="margin-bottom: 14px;">
+                <label for="nom" class="block text-gray-700 font-semibold">Nom</label>
+                <input style="border: 1px solid black; border-radius: 5px; outline: none; padding-left: 4px;" type="text" id="nom" name="nom" required class="w-full py-2">
+            </div>
+            <div style="margin-bottom: 14px;">
+                <label for="email" class="block text-gray-700 font-semibold">E-mail</label>
+                <input style="border: 1px solid black; border-radius: 5px; outline: none; padding-left: 4px;" type="text" id="nom" name="nom" required class="w-full py-2">
+            </div>
+            <div style="margin-bottom: 14px;">
+                <label for="avis" class="block text-gray-700 font-semibold">Votre avis</label>
+                <textarea style="border: 1px solid black; border-radius: 5px; outline: none; padding-left: 4px;" id="avis" name="avis" rows="4" required class="w-full py-2"></textarea>
+            </div>
+            <div class="mb-8">
+                <label for="note" class="block text-gray-700 font-semibold">Note</label>
+                <select style="border: 1px solid black; border-radius: 5px; outline: none; padding-left: 4px;" id="note" name="note" required class="w-full py-2">
+                    <option value="5">⭐⭐⭐⭐⭐ - Excellent</option>
+                    <option value="4">⭐⭐⭐⭐ - Très bien</option>
+                    <option value="3">⭐⭐⭐ - Moyen</option>
+                    <option value="2">⭐⭐ - Mauvais</option>
+                    <option value="1">⭐ - Très mauvais</option>
+                </select>
+            </div>
+            <button type="submit" class="w-full py-4 text-white bg-[#119797] rounded-full text-2xl font-bold">Soumettre mon avis</button>
+        </form>
+    </main>
+
+    <footer class="bg-[#119797] bg-opacity-90 text-white text-center mt-4">
+        <div class="flex w-full justify-between">
+            <div class="text-center flex flex-col items-center border-r-2 m-2 h-40 w-1/2">
+                <p class="text-lg font-bold">Care Voice</p>
+                <img width="50px" src="../hackathonIMAGES/WhatsApp Image 2025-02-27 à 08.21.18_8091cfb8.jpg" alt="logo du site " class="mx-auto text-center">
+                <p class="italic text-sm">Mon hôpital, Mon avis</p>
+                <div class="flex gap-2 lg:gap-4 sm:mr-[10px] my-4">
+                    <img src="../hackathonIMAGES/facebook.png" class="w-5 h-5 invert" alt="">
+                    <img src="../hackathonIMAGES/instagram.png" class="w-5 h-5 invert" alt="">
+                    <img src="../hackathonIMAGES/whatsapp.png" class="w-5 h-5 invert" alt="">
+                    <img src="../hackathonIMAGES/linkedin.png" class="w-5 h-5 invert" alt="">
+                </div><hr class="sm:hidden">
+            </div>
+            <div class="grid grid-rows-2 w-full lg:hidden">
+                <div class="flex justify-between p-2 items-center my-2 w-full border border-white !important">
+                    <h3 class="hover:underline">Contact</h3>
+                    <img class="hover:rounded-full hover:bg-[#1ca7a7] p-2" src="../hackathonIMAGES/down-arrow (1).png" alt="" id="derouler1">
+                </div>
+                <div class="flex justify-between p-2 items-center my-2 w-full border border-white !important">
+                    <h3 class="hover:underline">Lien utiles</h3>
+                    <img class="hover:rounded-full hover:bg-[#1ca7a7] p-2" src="../hackathonIMAGES/down-arrow (1).png" alt="" id="derouler2">
+                </div>
+            </div>
+            <div class="hidden flex-col lg:flex">
+                <a href="#" class="font-semibold my-3 hover:underline">Accueil</a>
+                <a href="#" class="font-semibold my-3 hover:underline">Fonctionnalités</a>
+                <a href="#" class="font-semibold my-3 hover:underline">Contact</a>
+                <a href="#" class="font-semibold my-3 hover:underline">FAQ</a>
+            </div>
+            <div class="flex-col my-3 hidden lg:block">
+                <h2 class="font-bold my-3">Contact & Support</h2>
+                <p class="my-3">•📍123 Rue de l'innovation, Abidjan </p>
+                <p class="my-3">•📞+225 01 02 03 04 05</p>
+                <p class="my-3">•📧support@carevoice.ci</p>
+            </div>
+        </div>
+        <div class="w-full bg-white text-black text-center py-4">
+            <p>&copy; 2025 Care Voice - Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="../hackathonJS/sonAvis.js"></script>
+</body>
+</html>

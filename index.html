@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LANDING PAGE</title>
+    <link rel="stylesheet" href="dist/styles.css">
+    <style>
+        #menu.hidden {
+            display: none;
+        }
+
+        #menu.block {
+            display: block;
+        }
+    </style>
+</head>
+<body class="h-screen w-full flex flex-col p-2" style="background-image: linear-gradient(rgba(4, 62, 39, 0.3), rgba(4, 62, 39, 0.3)), url('https://cdn.pixabay.com/photo/2023/11/30/11/47/ai-generated-8421436_1280.jpg'); background-size: cover; background-position: center;">
+    <header class="h-16 bg-white bg-opacity-90 flex items-center justify-between p-4">
+        <div class="flex items-center">
+            <img class="rounded-full bg-gray-500 mr-4" width="50px" src="./hackathonIMAGES/WhatsApp Image 2025-02-27 à 08.21.18_8091cfb8.jpg" alt="">
+            <h1 class="text-xl md:text-4xl font-bold text-[#119797]">Care Voice</h1>
+        </div>
+        <div id="burger" class="bg-[#119797] hover:bg-[#03bbbb] h-10 w-10 flex items-center justify-center rounded-full md:hidden">
+            <span class="text-white">&#9776</span>
+        </div>
+        <nav class="hidden md:block">
+            <ul class="flex">
+                <li class="mx-2"><a href="index.html" class="text-[#037e7e] hover:underline">Accueil</a></li>
+                <li class="mx-2"><a href="./hackathonHTML/sonAvis.html" class="text-[#037e7e] hover:underline">Donner son avis</a></li>
+                <li class="mx-2"><a href="#" class="text-[#037e7e] hover:underline">Statistiques</a></li>
+                <li class="mx-2"><a href="#" class="text-[#037e7e] hover:underline">Contact</a></li>
+            </ul>
+        </nav>
+        <div id="menu" class="w-[200px] h-[200px] relative top-[68px] left-4 bg-[#119797] hidden">
+            <div class="flex justify-end items-center p-2">
+                <div id="croix" class="text-[#119797] font-bold text-4xl w-10 h-10 flex items-center justify-center rounded-full bg-white hover:bg-[#03bbbb] hover:text-white">
+                    <span>&#9747</span>
+                </div>
+            </div>
+            <nav class="">
+                <ul class="block text-white text-lg px-4 leading-8">
+                    <li class=""><a href="index.html" class="hover:underline">Accueil</a></li>
+                    <li class=""><a href="./hackathonHTML/sonAvis.html" class="hover:underline">Donner son avis</a></li>
+                    <li class=""><a href="#" class="hover:underline">Statistiques</a></li>
+                    <li class=""><a href="#" class="hover:underline">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-1 h-auto ">
+        <section class="text-center">
+            <h1 class="mt-8 text-2xl md:text-6xl font-bold text-white mb-8">Voter avis compte!</h1>
+            <p class="text-white md:text-[1.5rem]">Votre santé, notre priorité : aidez-nous à améliorer les services hospitaliers en partageant votre expérience.</p>
+            <button class="bg-[#119797] text-white px-4 py-2 rounded-full hover:bg-white hover:text-[#119797] mt-4">Donner mon avis</button>
+        </section><br>
+        <div class="bg-white bg-opacity-90 p-4">
+            <h2 class="text-[#119797] text-2xl font-bold text-center w-full h-auto  py-4">Pourquoi donner votre avis?</h2>
+        </div>
+        <section class=" h-auto w-full grid grid-cols-2 grid-rows-2 gap-2">
+            <figure class="bg-[#119797] opacity-90 flex flex-col items-center justify-center text-center border-2 py-4">
+                <h3 class="font-bold text-white text-xl">Améliorer les soins</h3>
+                <img class="bg-white rounded-full" width="100px" height="100px" src="./hackathonIMAGES/neuroplasticite.png" alt="">
+                <figcaption class="text-xs text-white">Vos retours nous aident à mieux comprendre vos besoins.</figcaption>
+            </figure>
+            <figure class="bg-[#119797] opacity-90 flex flex-col items-center justify-center text-center border-2 py-4">
+                <h3 class="font-bold text-white text-xl">Renforcer la confiance</h3>
+                <img class="bg-white rounded-full" width="100px" height="100px" src="./hackathonIMAGES/confiance.png" alt="">
+                <figcaption class="text-xs text-white">Nous voulons bâtir une relation de confiance avec nos patients.</figcaption>
+            </figure>
+            <figure class="bg-[#119797] opacity-90 flex flex-col items-center justify-center text-center border-2 py-4">
+                <h3 class="font-bold text-white text-xl">Participer au changement</h3>
+                <img class="bg-white rounded-full" width="100px" height="100px" src="./hackathonIMAGES/de-largent.png" alt="">
+                <figcaption class="text-xs text-white">Chaque avis compte pour améliorer les hôpitaux à Abidjan.</figcaption>
+            </figure>
+            <figure class="bg-[#119797] opacity-90 flex flex-col items-center justify-center text-center border-2 py-4">
+                <h3 class="font-bold text-white text-xl">Suivi des améliorations</h3>
+                <img class="bg-white rounded-full" width="100px" height="100px" src="./hackathonIMAGES/gestion-des-performances.png" alt="">
+                <figcaption class="text-xs text-white">Accédez aux mises à jour sur les actions prises grâce aux retours.</figcaption>
+            </figure>
+        </section>
+    </main>
+
+    <footer class="bg-[#119797] bg-opacity-90 text-white text-center mt-4">
+        <div class="flex w-full justify-between">
+            <div class="text-center flex flex-col items-center border-r-2 m-2 h-40 w-1/2">
+                <p class="text-lg font-bold">Care Voice</p>
+                <img width="50px" src="./hackathonIMAGES/WhatsApp Image 2025-02-27 à 08.21.18_8091cfb8.jpg" alt="logo du site " class="mx-auto text-center">
+                <p class="italic text-sm">Mon hôpital, Mon avis</p>
+                <div class="flex gap-2 lg:gap-4 sm:mr-[10px] my-4">
+                    <img src="./hackathonIMAGES/facebook.png" class="w-5 h-5 invert" alt="">
+                    <img src="./hackathonIMAGES/instagram.png" class="w-5 h-5 invert" alt="">
+                    <img src="./hackathonIMAGES/whatsapp.png" class="w-5 h-5 invert" alt="">
+                    <img src="./hackathonIMAGES/linkedin.png" class="w-5 h-5 invert" alt="">
+                </div><hr class="sm:hidden">
+            </div>
+            <div class="grid grid-rows-2 w-full lg:hidden">
+                <div class="flex justify-between p-2 items-center my-2 w-full border border-white !important">
+                    <h3 class="hover:underline">Contact</h3>
+                    <img class="hover:rounded-full hover:bg-[#1ca7a7] p-2" src="./hackathonIMAGES/down-arrow (1).png" alt="" id="deroulant1">
+                </div>
+                <div class="flex justify-between p-2 items-center my-2 w-full border border-white !important">
+                    <h3 class="hover:underline">Lien utiles</h3>
+                    <img class="hover:rounded-full hover:bg-[#1ca7a7] p-2" src="./hackathonIMAGES/down-arrow (1).png" alt="" id="deroulant2">
+                </div>
+            </div>
+            <div id="derouler1" class="hidden flex-col lg:flex">
+                <a href="#" class="font-semibold my-3 hover:underline">Accueil</a>
+                <a href="#" class="font-semibold my-3 hover:underline">Fonctionnalités</a>
+                <a href="#" class="font-semibold my-3 hover:underline">Contact</a>
+                <a href="#" class="font-semibold my-3 hover:underline">FAQ</a>
+            </div>
+            <div id="derouler2" class="flex-col my-3 hidden lg:block">
+                <h2 class="font-bold my-3">Contact & Support</h2>
+                <p class="my-3">•📍123 Rue de l'innovation, Abidjan </p>
+                <p class="my-3">•📞+225 01 02 03 04 05</p>
+                <p class="my-3">•📧support@carevoice.ci</p>
+            </div>
+        </div>
+        <div class="w-full bg-white text-black text-center py-4">
+            <p>&copy; 2025 Care Voice - Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="./hackathonJS/accueil.js"></script>
+</body>
+
+</html>
