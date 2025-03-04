@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Témoignages</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .envoyer:hover {
+            background-color: white;
+            color: #119797;
+            border: 2px solid #119797;
+        }
+    </style>
+</head>
+<body class="h-screen w-full flex flex-col p-2" style="background-image: linear-gradient(rgba(4, 62, 39, 0.3), rgba(4, 62, 39, 0.3)), url('https://cdn.pixabay.com/photo/2023/11/30/11/47/ai-generated-8421436_1280.jpg'); background-size: cover; background-position: center;">
+
+    <header class="h-16 bg-white bg-opacity-90 flex items-center justify-between p-4">
+        <div class="flex items-center">
+            <img class="rounded-full bg-gray-500 mr-4" width="50px" src="../hackathonIMAGES/WhatsApp Image 2025-02-27 à 08.21.18_8091cfb8.jpg" alt="">
+            <h1 class="text-xl md:text-4xl font-bold text-[#119797]">Care Voice</h1>
+        </div>
+        <div id="burger4" class="bg-[#119797] hover:bg-[#03bbbb] h-10 w-10 flex items-center justify-center rounded-full lg:hidden">
+            <span class="text-white">&#9776</span>
+        </div>
+        <nav class="hidden lg:block">
+            <ul class="flex">
+                <li class="mx-2"><a href="../index.html" class="text-[#037e7e] hover:underline">Accueil</a></li>
+                <li class="mx-2"><a href="sonAvis.html" class="text-[#037e7e] hover:underline font-bold">Donner son avis</a></li>
+                <li class="mx-2"><a href="stats.html" class="text-[#037e7e] hover:underline">Statistiques</a></li>
+                <li class="mx-2"><a href="temoignages.html" class="text-[#037e7e] hover:underline font-bold">Témoignages</a></li>
+                <li class="mx-2"><a href="contact.html" class="text-[#037e7e] hover:underline">Contact</a></li>
+                <button class="inscription bg-[#119797] px-2 text-white rounded-lg mr-2 hover:bg-white hover:text-[#119797]"><a href="inscription.html">inscription</a></button>
+                <button class="connexion bg-white border-[#119797] hover:bg-[#119797] px-2 hover:text-white rounded-lg text-[#119797]"><a href="connexion.html">connexion</a></button>
+            </ul>
+        </nav>
+        <div style="top: 93px;" id="menu4" class="w-[200px] h-auto relative left-4 bg-[#119797] hidden">
+            <div class="flex justify-end items-center p-2">
+                <div id="croix4" class="text-[#119797] font-bold text-4xl w-10 h-10 flex items-center justify-center rounded-full bg-white hover:bg-[#03bbbb] hover:text-white">
+                    <span>&#9747</span>
+                </div>
+            </div>
+            <nav class="">
+                <ul class="block text-white text-lg px-4 leading-8">
+                    <li class=""><a href="../index.html" class="hover:underline">Accueil</a></li>
+                    <li class=""><a href="sonAvis.html" class="hover:underline">Donner son avis</a></li>
+                    <li class=""><a href="stats.html" class="hover:underline">Statistiques</a></li>
+                    <li class=""><a href="temoignages.html" class="hover:underline font-bold">Témoignages</a></li>
+                    <li class=""><a href="contact.html" class="hover:underline">Contact</a></li>
+                    <li class=""><a href="inscription.html" class="hover:underline border rounded-lg">inscription</a></li>
+                    <li class=""><a href="connexion.html" class="hover:underline border rounded-lg">connexion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    
+    <section class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg mt-10">
+        <h2 class="text-2xl font-bold text-center mb-6 text-[#119797]">Témoignages des Patients</h2>
+    
+        <div id="temoignages-list" class="space-y-4">
+        </div>
+    
+        <div class="mt-6 p-4 border rounded-lg bg-[#119797] bg-opacity-10">
+            <h3 class="text-lg font-bold mb-2 text-[#119797]">Ajouter un témoignage</h3>
+            <input id="nom" type="text" placeholder="Votre nom" class="w-full px-4 py-2 mb-2 border rounded-lg">
+            <textarea id="message" rows="3" placeholder="Votre témoignage" class="w-full px-4 py-2 mb-2 border rounded-lg"></textarea>
+            <button onclick="ajouterTemoignage()" class="envoyer w-full bg-[#119797] text-white py-2 rounded-lg hover:bg-white hover:border-[#119797] hover:text-[#119797]">
+                Envoyer
+            </button>
+        </div>
+    </section>
+    
+    
+    <footer class="bg-[#119797] bg-opacity-90 text-white text-center mt-4">
+        <div class="flex w-full justify-between">
+            <div class="text-center flex flex-col items-center border-r-2 m-2 h-40 w-1/2">
+                <p class="text-lg font-bold">Care Voice</p>
+                <img width="50px" src="../hackathonIMAGES/WhatsApp Image 2025-02-27 à 08.21.18_8091cfb8.jpg" alt="logo du site " class="mx-auto text-center">
+                <p class="italic text-sm">Mon hôpital, Mon avis</p>
+                <div class="flex gap-2 lg:gap-4 sm:mr-[10px] my-4">
+                    <img src="../hackathonIMAGES/facebook.png" class="w-5 h-5 invert" alt="">
+                    <img src="../hackathonIMAGES/instagram.png" class="w-5 h-5 invert" alt="">
+                    <img src="../hackathonIMAGES/whatsapp.png" class="w-5 h-5 invert" alt="">
+                    <img src="../hackathonIMAGES/linkedin.png" class="w-5 h-5 invert" alt="">
+                </div><hr class="sm:hidden">
+            </div>
+            <div class="grid grid-rows-2 w-full lg:hidden">
+                <div class="flex justify-between p-2 items-center my-2 w-full border border-white !important">
+                    <h3 class="hover:underline">Contact</h3>
+                    <img class="hover:rounded-full hover:bg-[#1ca7a7] p-2" src="../hackathonIMAGES/down-arrow (1).png" alt="" id="deroulant14">
+                </div>
+                <div class="flex justify-between p-2 items-center my-2 w-full border border-white !important">
+                    <h3 class="hover:underline">Lien utiles</h3>
+                    <img class="hover:rounded-full hover:bg-[#1ca7a7] p-2" src="../hackathonIMAGES/down-arrow (1).png" alt="" id="deroulant24">
+                </div>
+            </div>
+            <div id="derouler14" class="hidden flex-col lg:flex">
+                <a href="#" class="font-semibold my-3 hover:underline">Accueil</a>
+                <a href="#" class="font-semibold my-3 hover:underline">Fonctionnalités</a>
+                <a href="#" class="font-semibold my-3 hover:underline">Contact</a>
+                <a href="#" class="font-semibold my-3 hover:underline">FAQ</a>
+            </div>
+            <div id="derouler24" class="flex-col my-3 hidden lg:block">
+                <h2 class="font-bold my-3">Contact & Support</h2>
+                <p class="my-3">•📍123 Rue de l'innovation, Abidjan </p>
+                <p class="my-3">•📞+225 01 02 03 04 05</p>
+                <p class="my-3">•📧support@carevoice.ci</p>
+            </div>
+        </div>
+        <div class="w-full bg-white text-black text-center py-4">
+            <p>&copy; 2025 Care Voice - Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="../hackathonJS/temoignages.js"></script>
+    
+    
+    <script>
+        
+        const temoignages = [
+            { nom: "Awa K.", message: "Super accueil et médecins très à l'écoute !" },
+            { nom: "Jean M.", message: "Temps d'attente un peu long, mais service de qualité." }
+        ];
+    
+        
+        function afficherTemoignages() {
+            const list = document.getElementById("temoignages-list");
+            list.innerHTML = ""; // Vider la liste avant d'afficher
+    
+            temoignages.forEach(temoignage => {
+                list.innerHTML += `
+                    <div class="p-4 border rounded-lg bg-[#119797] bg-opacity-10">
+                        <p class="font-semibold">${temoignage.nom}</p>
+                        <p class="text-gray-600">${temoignage.message}</p>
+                    </div>
+                `;
+            });
+        }
+    
+        
+        function ajouterTemoignage() {
+            const nom = document.getElementById("nom").value.trim();
+            const message = document.getElementById("message").value.trim();
+    
+            if (nom && message) {
+                temoignages.push({ nom, message });
+                afficherTemoignages();
+                document.getElementById("nom").value = "";
+                document.getElementById("message").value = "";
+            } else {
+                alert("Veuillez remplir tous les champs !");
+            }
+        }
+    
+        
+        afficherTemoignages();
+    </script>
+
+</body>
+</html>

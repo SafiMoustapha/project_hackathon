@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .envoyer:hover {
+            background-color: white;
+            color: #119797;
+            border: 2px solid #119797;
+        }
+    </style>
+</head>
+<body class="h-screen w-full flex flex-col p-2" style="background-image: linear-gradient(rgba(4, 62, 39, 0.3), rgba(4, 62, 39, 0.3)), url('https://cdn.pixabay.com/photo/2023/11/30/11/47/ai-generated-8421436_1280.jpg'); background-size: cover; background-position: center;">
+    <header class="h-16 bg-white bg-opacity-90 flex items-center justify-between p-4">
+        <div class="flex items-center">
+            <img class="rounded-full bg-gray-500 mr-4" width="50px" src="../hackathonIMAGES/WhatsApp Image 2025-02-27 à 08.21.18_8091cfb8.jpg" alt="">
+            <h1 class="text-xl md:text-4xl font-bold text-[#119797]">Care Voice</h1>
+        </div>
+        <div id="burger6" class="bg-[#119797] hover:bg-[#03bbbb] h-10 w-10 flex items-center justify-center rounded-full lg:hidden">
+            <span class="text-white">&#9776</span>
+        </div>
+        <nav class="hidden lg:block">
+            <ul class="flex">
+                <li class="mx-2"><a href="../index.html" class="text-[#037e7e] hover:underline">Accueil</a></li>
+                <li class="mx-2"><a href="sonAvis.html" class="text-[#037e7e] hover:underline">Donner son avis</a></li>
+                <li class="mx-2"><a href="stats.html" class="text-[#037e7e] hover:underline">Statistiques</a></li>
+                <li class="mx-2"><a href="temoignages.html" class="text-[#037e7e] hover:underline">Témoignages</a></li>
+                <li class="mx-2"><a href="contact.html" class="text-[#037e7e] hover:underline">Contact</a></li>
+                <button class="inscription bg-[#119797] px-2 text-white rounded-lg mr-2 hover:bg-white hover:text-[#119797] font-bold"><a href="inscription.html">inscription</a></button>
+                <button class="connexion bg-white border-[#119797] hover:bg-[#119797] px-2 hover:text-white rounded-lg text-[#119797]"><a href="connexion.html">connexion</a></button>
+            </ul>
+        </nav>
+        <div style="top: 93px;" id="menu6" class="w-[200px] h-auto relative left-4 bg-[#119797] hidden">
+            <div class="flex justify-end items-center p-2">
+                <div id="croix6" class="text-[#119797] font-bold text-4xl w-10 h-10 flex items-center justify-center rounded-full bg-white hover:bg-[#03bbbb] hover:text-white">
+                    <span>&#9747</span>
+                </div>
+            </div>
+            <nav class="">
+                <ul class="block text-white text-lg px-4 leading-8">
+                    <li class=""><a href="../index.html" class="hover:underline">Accueil</a></li>
+                    <li class=""><a href="sonAvis.html" class="hover:underline font-bold">Donner son avis</a></li>
+                    <li class=""><a href="stats.html" class="hover:underline">Statistiques</a></li>
+                    <li class=""><a href="temoignages.html" class="hover:underline">Témoignages</a></li>
+                    <li class=""><a href="contact.html" class="hover:underline">Contact</a></li>
+                    <li class=""><a href="inscription.html" class="hover:underline border rounded-lg">inscription</a></li>
+                    <li class=""><a href="connexion.html" class="hover:underline border rounded-lg">connexion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex items-center justify-center flex-col mb-4 w-full mt-4">
+        <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-center text-[#119797] mb-4">Créer un compte</h2>
+    
+            <form id="signupForm" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-gray-700 font-medium">Nom :</label>
+                    <input type="text" id="name" name="name" required
+                        class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                </div>
+    
+                <div>
+                    <label for="email" class="block text-gray-700 font-medium">Email :</label>
+                    <input type="email" id="email" name="email" required
+                        class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                </div>
+    
+                <div>
+                    <label for="password" class="block text-gray-700 font-medium">Mot de passe :</label>
+                    <input type="password" id="password" name="password" required
+                        class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                </div>
+    
+                <div>
+                    <label for="confirmPassword" class="block text-gray-700 font-medium">Confirmer le mot de passe :</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required
+                        class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                </div>
+    
+                <p id="error-message" class="text-red-500 text-sm hidden">⚠️ Les mots de passe ne correspondent pas.</p>
+    
+                <button type="submit" class="envoyer w-full bg-[#119797] text-white py-2 rounded-lg font-semibold transition duration-300">
+                    S'inscrire
+                </button>
+            </form>
+    
+            <p class="mt-4 text-center text-gray-600 text-sm">Déjà un compte ? <a href="connexion.html" class="text-[#119797] hover:underline">Connectez-vous</a></p>
+        </div>
+    </main>
+
+    <footer class="bg-[#119797] bg-opacity-90 text-white text-center mt-4">
+        <div class="flex w-full justify-between">
+            <div class="text-center flex flex-col items-center border-r-2 m-2 h-40 w-1/2">
+                <p class="text-lg font-bold">Care Voice</p>
+                <img width="50px" src="../hackathonIMAGES/WhatsApp Image 2025-02-27 à 08.21.18_8091cfb8.jpg" alt="logo du site " class="mx-auto text-center">
+                <p class="italic text-sm">Mon hôpital, Mon avis</p>
+                <div class="flex gap-2 lg:gap-4 sm:mr-[10px] my-4">
+                    <img src="../hackathonIMAGES/facebook.png" class="w-5 h-5 invert" alt="">
+                    <img src="../hackathonIMAGES/instagram.png" class="w-5 h-5 invert" alt="">
+                    <img src="../hackathonIMAGES/whatsapp.png" class="w-5 h-5 invert" alt="">
+                    <img src="../hackathonIMAGES/linkedin.png" class="w-5 h-5 invert" alt="">
+                </div><hr class="sm:hidden">
+            </div>
+            <div class="grid grid-rows-2 w-full lg:hidden">
+                <div class="flex justify-between p-2 items-center my-2 w-full border border-white !important">
+                    <h3 class="hover:underline">Contact</h3>
+                    <img class="hover:rounded-full hover:bg-[#1ca7a7] p-2" src="../hackathonIMAGES/down-arrow (1).png" alt="" id="deroulant16">
+                </div>
+                <div class="flex justify-between p-2 items-center my-2 w-full border border-white !important">
+                    <h3 class="hover:underline">Lien utiles</h3>
+                    <img class="hover:rounded-full hover:bg-[#1ca7a7] p-2" src="../hackathonIMAGES/down-arrow (1).png" alt="" id="deroulant26">
+                </div>
+            </div>
+            <div id="derouler16" class="hidden flex-col lg:flex">
+                <a href="#" class="font-semibold my-3 hover:underline">Accueil</a>
+                <a href="#" class="font-semibold my-3 hover:underline">Fonctionnalités</a>
+                <a href="#" class="font-semibold my-3 hover:underline">Contact</a>
+                <a href="#" class="font-semibold my-3 hover:underline">FAQ</a>
+            </div>
+            <div id="derouler26" class="flex-col my-3 hidden lg:block">
+                <h2 class="font-bold my-3">Contact & Support</h2>
+                <p class="my-3">•📍123 Rue de l'innovation, Abidjan </p>
+                <p class="my-3">•📞+225 01 02 03 04 05</p>
+                <p class="my-3">•📧support@carevoice.ci</p>
+            </div>
+        </div>
+        <div class="w-full bg-white text-black text-center py-4">
+            <p>&copy; 2025 Care Voice - Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const errorMessage = document.getElementById("error-message");
+
+            if (password !== confirmPassword) {
+                errorMessage.classList.remove("hidden");
+            } else {
+                errorMessage.classList.add("hidden");
+                alert("Inscription réussie ! 🚀");
+                this.reset();
+            }
+        });
+    </script>
+    <script src="../hackathonJS/inscription.js"></script>
+</body>
+</html>
