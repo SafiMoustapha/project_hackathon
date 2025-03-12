@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avis</title>
-    <link rel="stylesheet" href="../dist/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .envoyer:hover {
             background-color: white;
@@ -54,7 +54,7 @@
     </header>
 
     <main class="flex items-center justify-center flex-col mb-4">
-        <form action="" method="post" style="border-radius: 5px;" class="bg-white p-4 shadow-lg mt-4 max-w-2xl mx-auto lg:w-1/2">
+        <form id="reviewForm" action="" method="post" enctype="multipart/form-data" style="border-radius: 5px;" class="bg-white p-4 shadow-lg mt-4 max-w-2xl mx-auto lg:w-1/2">
             <h1 class="text-2xl md:text-4xl font-bold text-[#119797] text-center mb-4">Donnez votre avis</h1>
             <p class="text-[#000000] text-center mb-8 md:text-[1.5rem]">Votre retour nous aide à améliorer les services hospitaliers.</p>
             
@@ -64,15 +64,35 @@
             </div>
             <div style="margin-bottom: 14px;">
                 <label for="email" class="block text-gray-700 font-semibold">E-mail</label>
-                <input style="border: 1px solid black; border-radius: 5px; outline: none; padding-left: 4px;" type="text" id="nom" name="nom" required class="w-full py-2">
+                <input style="border: 1px solid black; border-radius: 5px; outline: none; padding-left: 4px;" type="email" id="email" name="email" required class="w-full py-2">
             </div>
+            <div style="margin-bottom: 14px;">
+                <label for="hopital" class="block text-gray-700 font-semibold">Nom de l'hôpital</label>
+                <input style="border: 1px solid black; border-radius: 5px; outline: none; padding-left: 4px;" type="text" id="searchHospital" placeholder="Rechercher un hôpital" class="w-full py-2 mb-4 border-1 border-black rounded-lg">
+                <!-- Liste de suggestions qui va s'afficher sous le champ de recherche -->
+                <ul id="hospitalSuggestions" class="w-full py-2 mt-2 border-1 border-black rounded-lg hidden">
+                    <!-- Les hôpitaux filtrés seront ajoutés ici -->
+                </ul>
+            </div>
+            <div style="margin-bottom: 14px;">
+                <label for="document" class="block text-gray-700 font-semibold">Document justificatif</label>
+                <input style="border: 1px solid black; border-radius: 5px; outline: none; padding-left: 4px;" type="file" id="document" name="document" required class="w-full py-2">
+            </div>
+            <div style="margin-bottom: 14px;">
+                <label for="type_avis" class="block text-gray-700 font-semibold">Type d'avis</label>
+                <select style="border: 1px solid black; border-radius: 5px; outline: none; padding-left: 4px;" id="type_avis" name="type_avis" required class="w-full py-2">
+                    <option value="">-- Sélectionnez un type d'avis --</option>
+                    <option value="service">Attente</option>
+                    <option value="proprete">Accueil</option>
+                    <option value="attente">Propreté</option>
+                    <option value="soins">Manque de matériel</option>
+                    <option value="accessibilite">Accessibilité</option>
+                    <option value="autres">Autres</option>
+                </select>
+            </div>            
             <div style="margin-bottom: 14px;">
                 <label for="avis" class="block text-gray-700 font-semibold">Votre avis</label>
                 <textarea style="border: 1px solid black; border-radius: 5px; outline: none; padding-left: 4px;" id="avis" name="avis" rows="4" required class="w-full py-2"></textarea>
-            </div>
-            <div style="margin-bottom: 14px;">
-                <label for="text" class="block text-gray-700 font-semibold">Nom de l'hopital</label>
-                <input style="border: 1px solid black; border-radius: 5px; outline: none; padding-left: 4px;" type="text" id="nom" name="nom" required class="w-full py-2">
             </div>
             <div class="mb-8">
                 <label for="note" class="block text-gray-700 font-semibold">Note</label>
@@ -87,6 +107,7 @@
             <button type="submit" class="envoyer w-full py-4 text-white bg-[#119797] hover:bg-white hover:text-[#119797] rounded-full text-2xl font-bold">Soumettre mon avis</button>
         </form>
     </main>
+    
 
     <footer class="bg-[#119797] bg-opacity-90 text-white text-center mt-4">
         <div class="flex w-full justify-between">
@@ -104,14 +125,14 @@
             <div class="grid grid-rows-2 w-full lg:hidden">
                 <div class="flex justify-between p-2 items-center my-2 w-full border border-white !important">
                     <h3 class="hover:underline">Contact</h3>
-                    <img class="hover:rounded-full hover:bg-[#1ca7a7] p-2" src="../hackathonIMAGES/down-arrow (1).png" alt="" id="deroulant11">
+                    <img class="hover:rounded-full hover:bg-[#1ca7a7] p-2" src="../hackathonIMAGES/down-arrow (1).png" alt="" id="deroulant12">
                 </div>
                 <div class="flex justify-between p-2 items-center my-2 w-full border border-white !important">
                     <h3 class="hover:underline">Lien utiles</h3>
                     <img class="hover:rounded-full hover:bg-[#1ca7a7] p-2" src="../hackathonIMAGES/down-arrow (1).png" alt="" id="deroulant22">
                 </div>
             </div>
-            <div id="derouler11" class="hidden flex-col lg:flex">
+            <div id="derouler12" class="hidden flex-col lg:flex">
                 <a href="#" class="font-semibold my-3 hover:underline">Accueil</a>
                 <a href="#" class="font-semibold my-3 hover:underline">Fonctionnalités</a>
                 <a href="#" class="font-semibold my-3 hover:underline">Contact</a>
