@@ -12,7 +12,7 @@
         .inscription:hover { border: 1px solid #119797; color: #119797; }
     </style>
 </head>
-<body class="h-screen w-full flex flex-col p-2" style="background-image: linear-gradient(rgba(4, 62, 39, 0.3), rgba(4, 62, 39, 0.3)), url('https://cdn.pixabay.com/photo/2023/11/30/11/47/ai-generated-8421436_1280.jpg'); background-size: cover; background-position: center;">
+<body class="bg-cover bg-center bg-fixed h-screen w-full flex flex-col p-2" style="background-image: linear-gradient(rgba(4, 62, 39, 0.3), rgba(4, 62, 39, 0.3)), url('https://cdn.pixabay.com/photo/2023/11/30/11/47/ai-generated-8421436_1280.jpg'); background-size: cover; background-position: center;">
     
     <header class="h-16 bg-white bg-opacity-90 flex items-center justify-between p-4 fixed top-0 left-0 w-full">
         <div class="flex items-center">
@@ -34,12 +34,12 @@
             </ul>
         </nav>
         <div id="burger" class="bg-[#119797] hover:bg-[#03bbbb] h-10 w-10 flex items-center justify-center rounded-full">
-            <span class="text-white">&#9776</span>
+            <span class="text-white">&#9776;</span>
         </div>
         <div style="top: 93px;" id="menu" class="w-[200px] h-auto relative left-4 bg-[#119797] hidden">
             <div class="flex justify-end items-center p-2">
                 <div id="croix" class="text-[#119797] font-bold text-4xl w-10 h-10 flex items-center justify-center rounded-full bg-white hover:bg-[#03bbbb] hover:text-white">
-                    <span>&#9747</span>
+                    <span>&#9747;</span>
                 </div>
             </div>
             <nav class="">
@@ -56,7 +56,7 @@
         </div>
     </header>
 
-    <main class="flex-1 text-center text-white mb-4">
+    <main class="flex-1 text-center text-white mb-4 mt-12">
         <h1 class="mt-8 text-3xl md:text-6xl font-bold">Votre avis compte!</h1>
         <p class="md:text-xl">Aidez-nous à améliorer les services hospitaliers en partageant votre expérience.</p>
         <a href="./hackathonHTML/sonAvis.html" class="bg-[#119797] text-white px-6 py-3 rounded-lg hover:bg-white hover:text-[#119797] mt-6 inline-block">Donner mon avis</a>
@@ -70,6 +70,14 @@
             
             Notre initiative s’appuie sur des technologies avancées, notamment l’intelligence artificielle, pour analyser les tendances et fournir des rapports détaillés qui aident les hôpitaux et cliniques à prendre des décisions éclairées.</p>
     </section>
+
+    <section id="dashboard-link" class="text-center py-12">
+        <p class="mb-6 text-white">Cliquez ci-dessous pour accéder au tableau de bord des hôpitaux.</p>
+        <button onclick="goToDashboard()" class="bg-[#119797] text-white py-2 px-4 rounded-md hover:bg-white hover:text-[#119797]">
+            <a href="./hackathonHTML/dashboard.html">Accéder au Tableau de Bord</a>
+        </button>
+    </section>
+    
 
     <section id="how" class="py-12 text-center">
         <div class="flex items-center justify-center gap-4">
