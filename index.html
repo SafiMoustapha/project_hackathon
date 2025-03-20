@@ -16,7 +16,10 @@
     
     <header class="h-16 bg-white bg-opacity-90 flex items-center justify-between p-4 fixed top-0 left-0 w-full">
         <div class="flex items-center">
-            <img class="rounded-full bg-gray-500 mr-4" width="50px" src="../hackathonIMAGES/WhatsApp Image 2025-02-27 à 08.21.18_8091cfb8.jpg" alt="">
+            <a href="index.html">
+                <img class="rounded-full bg-gray-500 mr-4" width="50px" src="../hackathonIMAGES/WhatsApp Image 2025-02-27 à 08.21.18_8091cfb8.jpg" alt="">
+            </a>
+            
             <h1 class="text-xl md:text-4xl font-bold text-[#119797]">Care Voice</h1>
         </div>
         <select name="option" id="option" class="block lg:hidden bg-[#119797] text-white py-2 rounded-lg">
@@ -33,7 +36,7 @@
                 <li class="mx-2"><a href="#contact" class="text-[#037e7e] hover:underline">Contact</a></li>
             </ul>
         </nav>
-        <div id="burger" class="bg-[#119797] hover:bg-[#03bbbb] h-10 w-10 flex items-center justify-center rounded-full">
+        <!-- <div id="burger" class="bg-[#119797] hover:bg-[#03bbbb] h-10 w-10 flex items-center justify-center rounded-full">
             <span class="text-white">&#9776;</span>
         </div>
         <div style="top: 93px;" id="menu" class="w-[200px] h-auto relative left-4 bg-[#119797] hidden">
@@ -53,13 +56,13 @@
                     <li class=""><a href="./hackathonHTML/connexion.html" class="hover:underline border rounded-lg">connexion</a></li>
                 </ul>
             </nav>
-        </div>
+        </div> -->
     </header>
 
     <main class="flex-1 text-center text-white mb-4 mt-12">
         <h1 class="mt-8 text-3xl md:text-6xl font-bold">Votre avis compte!</h1>
         <p class="md:text-xl">Aidez-nous à améliorer les services hospitaliers en partageant votre expérience.</p>
-        <a href="./hackathonHTML/sonAvis.html" class="bg-[#119797] text-white px-6 py-3 rounded-lg hover:bg-white hover:text-[#119797] mt-6 inline-block">Donner mon avis</a>
+        <a href="./hackathonHTML/inscription.html" class="bg-[#119797] text-white px-6 py-3 rounded-lg hover:bg-white hover:text-[#119797] mt-6 inline-block">Donner mon avis</a>
     </main>
 
     <section id="about" class="bg-gray-100 py-12 p-4">
@@ -73,7 +76,7 @@
 
     <section id="dashboard-link" class="text-center py-12">
         <p class="mb-6 text-white">Cliquez ci-dessous pour accéder au tableau de bord des hôpitaux.</p>
-        <button onclick="goToDashboard()" class="bg-[#119797] text-white py-2 px-4 rounded-md hover:bg-white hover:text-[#119797]">
+        <button class="bg-[#119797] text-white py-2 px-4 rounded-md hover:bg-white hover:text-[#119797]">
             <a href="./hackathonHTML/dashboard.html">Accéder au Tableau de Bord</a>
         </button>
     </section>

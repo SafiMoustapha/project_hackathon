@@ -52,7 +52,3 @@ sonAvis.addEventListener('click', () => {
     console.log('sonAvis clicked');
     toggleSonAvis();
 });
-
-function goToDashboard() {
-    window.location.href = "dashboard.html"; // Redirige vers le tableau de bord
-  }
