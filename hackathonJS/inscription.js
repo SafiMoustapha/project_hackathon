@@ -42,35 +42,35 @@ deroulant26.addEventListener('click', () => {
     toggleDerouler26();
 });
 
-document.getElementById("registerForm").addEventListener("submit", async function (event) {
-    event.preventDefault();
+// document.getElementById("registerForm").addEventListener("submit", async function (event) {
+//     event.preventDefault();
 
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+//     const name = document.getElementById("name").value;
+//     const email = document.getElementById("email").value;
+//     const password = document.getElementById("password").value;
 
-    console.log("🔍 Données envoyées :", { name, email, password });
+//     console.log("🔍 Données envoyées :", { name, email, password });
 
-    try {
-        const response = await fetch("http://localhost:5000/api/users/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ name, email, password }),
-        });
+//     try {
+//         const response = await fetch("http://localhost:5000/api/users/register", {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify({ name, email, password }),
+//         });
 
-        const data = await response.json();
-        console.log("✅ Réponse du backend :", data);
+//         const data = await response.json();
+//         console.log("✅ Réponse du backend :", data);
 
-        // 🎯 Afficher un message de succès ou d'erreur sur la page
-        const messageDiv = document.getElementById("message");
-        if (response.ok) {
-            messageDiv.innerHTML = `<p class="text-green-500">Inscription réussie !</p>`;
-        } else {
-            messageDiv.innerHTML = `<p class="text-red-500">${data.message}</p>`;
-        }
-    } catch (error) {
-        console.error("❌ Erreur lors de l'inscription :", error);
-    }
-});
+//         // 🎯 Afficher un message de succès ou d'erreur sur la page
+//         const messageDiv = document.getElementById("message");
+//         if (response.ok) {
+//             messageDiv.innerHTML = `<p class="text-green-500">Inscription réussie !</p>`;
+//         } else {
+//             messageDiv.innerHTML = `<p class="text-red-500">${data.message}</p>`;
+//         }
+//     } catch (error) {
+//         console.error("❌ Erreur lors de l'inscription :", error);
+//     }
+// });

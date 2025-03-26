@@ -100,7 +100,8 @@
 
                 <button type="submit"
                     class="envoyer w-full bg-[#119797] text-white py-2 rounded-lg font-semibold transition duration-300">
-                    <a href="connexion.html">S'inscrire</a>
+                    <!-- <a href="connexion.html">S'inscrire</a> -->
+                    S'inscrire
                 </button>
             </form>
 
@@ -158,31 +159,77 @@
     </footer>
 
     <script>
-        document.getElementById("signupForm").addEventListener("submit", function (event) {
+        document.getElementById("signupForm").addEventListener("submit", async function (event) {
             event.preventDefault();
-
-            const password = document.getElementById("password").value;
+    
+            const name = document.getElementById("name").value;
             const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
             const errorMessage = document.getElementById("error-message");
-
-            // Vérification de la longueur du mot de passe (minimum 6 caractères)
-            if (password.length < 6) {
+            const messageDiv = document.getElementById("message");
+    
+            // 🔍 Vérification des mots de passe
+            if (password !== confirmPassword) {
+                errorMessage.textContent = "⚠️ Les mots de passe ne correspondent pas.";
                 errorMessage.classList.remove("hidden");
-                errorMessage.textContent = "Le mot de passe doit comporter au moins 6 caractères !";
+                return;
             } else {
                 errorMessage.classList.add("hidden");
+            }
+    
+            // 🔍 Vérification de la longueur du mot de passe
+            if (password.length < 6) {
+                errorMessage.textContent = "⚠️ Le mot de passe doit contenir au moins 6 caractères.";
+                errorMessage.classList.remove("hidden");
+                return;
+            }
 
-                // Affichage d'un message d'alerte de réussite
-                alert("Inscription réussie ! 🚀");
-
-                // Redirection vers la page de connexion
-                window.location.href = "connexion.html"; // Redirige vers la page de connexion
-
-                // Réinitialisation du formulaire (bien que ce ne soit plus nécessaire après la redirection)
-                this.reset();
+            //validation de l'email
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!emailPattern.test(email)) {
+                errorMessage.textContent = "⚠️ L'email n'est pas valide.";
+                errorMessage.classList.remove("hidden");
+                return;
+            }
+    
+            // 🔄 Désactiver le bouton pour éviter les doubles soumissions
+            const submitButton = document.querySelector(".envoyer");
+            submitButton.disabled = true;
+            submitButton.textContent = "Inscription en cours...";
+    
+            try {
+                // 📩 Envoi des données au backend
+                const response = await fetch("https://backendhackathon-production.up.railway.app/api/users/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ name, email, password }),
+                });
+    
+                const data = await response.json();
+    
+                // ✅ Si l'inscription est réussie
+                if (response.ok) {
+                    messageDiv.innerHTML = `<p class="text-green-500 font-bold">✅ Inscription réussie ! Redirection...</p>`;
+                    setTimeout(() => {
+                        window.location.href = "connexion.html"; // Redirige vers la connexion
+                    }, 2000);
+                } else {
+                    // ❌ Afficher l'erreur envoyée par le backend
+                    messageDiv.innerHTML = `<p class="text-red-500 font-bold">⚠️ ${data.message}</p>`;
+                }
+            } catch (error) {
+                console.error("❌ Erreur lors de l'inscription :", error);
+                messageDiv.innerHTML = `<p class="text-red-500 font-bold">❌ Une erreur est survenue. Veuillez réessayer.</p>`;
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = "S'inscrire";
             }
         });
     </script>
+    
 
     <script src="../hackathonJS/inscription.js"></script>
 </body>

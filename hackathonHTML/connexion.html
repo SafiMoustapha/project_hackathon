@@ -21,9 +21,10 @@
     <header class="h-16 bg-white bg-opacity-90 flex items-center justify-between p-4 fixed top-0 left-0 w-full">
         <div class="flex items-center">
             <a href="../index.html">
-                <img class="rounded-full bg-gray-500 mr-4" width="50px" src="../hackathonIMAGES/WhatsApp Image 2025-02-27 à 08.21.18_8091cfb8.jpg" alt="">
+                <img class="rounded-full bg-gray-500 mr-4" width="50px"
+                    src="../hackathonIMAGES/WhatsApp Image 2025-02-27 à 08.21.18_8091cfb8.jpg" alt="">
             </a>
-            
+
             <h1 class="text-xl md:text-4xl font-bold text-[#119797]">Care Voice</h1>
         </div>
         <div id="burger5"
@@ -92,7 +93,8 @@
 
                 <button type="submit"
                     class="envoyer w-full bg-[#119797] text-white py-2 rounded-lg font-semibold transition duration-300">
-                    <a href="../index.html">Se connecter</a>
+                    <!-- <a href="../index.html">Se connecter</a> -->
+                    Se connecter
                 </button>
             </form>
 
@@ -166,26 +168,42 @@
                 return;
             }
 
-            // Vérification de la longueur du mot de passe (ex. minimum 6 caractères)
+            // Vérification de la longueur du mot de passe
             if (password.length < 6) {
                 alert("Le mot de passe doit comporter au moins 6 caractères !");
                 return;
             }
 
-            // Ajout du message
-            const messageList = document.getElementById("messageList");
-            const newMessage = document.createElement("li");
-            newMessage.classList = "p-4 bg-gray-100 border rounded-lg shadow";
-            newMessage.innerHTML = `<strong>${name} (${email}):</strong> <p class="text-gray-600">Inscription réussie !</p>`;
+            // Simuler une requête pour vérifier les informations d'identification
+            // Ici, tu devras faire une requête HTTP vers ton backend pour vérifier l'utilisateur
+            const user = { email: email, password: password };
 
-            messageList.appendChild(newMessage);
+            // Exemple d'envoi de requête (tu dois remplacer par une vraie API)
+            fetch('https://backendhackathon-production.up.railway.app/api/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Réponse du serveur :', data);
 
-            // Réinitialisation du formulaire après l'envoi
-            document.getElementById("contactform").reset();
+                    if (data.token) { // Vérifier si un token est reçu
+                        localStorage.setItem('token', data.token); // Sauvegarde du token
+                        window.location.href = "sonAvis.html"; // Rediriger vers le formulaire d'avis
+                    } else {
+                        alert(data.message || "Erreur de connexion");
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                    alert("Une erreur est survenue. Veuillez réessayer plus tard.");
+                });
 
-            // Redirection vers la page d'accueil
-            window.location.href = "../index.html"; // Page d'accueil
         });
+
     </script>
 
     <script src="../hackathonJS/connexion.js"></script>

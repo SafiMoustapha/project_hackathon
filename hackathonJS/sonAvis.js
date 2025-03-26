@@ -43,90 +43,57 @@ deroulant22.addEventListener('click', () => {
 });
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    const searchHospital = document.getElementById("searchHospital");
-    const hospitalSuggestions = document.getElementById("hospitalSuggestions");
-    const form = document.getElementById("reviewForm");
+// Récupérer l'élément du champ de recherche et de la liste des suggestions
+const searchHospitalInput = document.getElementById('searchHospital');
+const hospitalSuggestionsList = document.getElementById('hospitalSuggestions');
 
-    console.log("searchInput:", searchHospital);
-    console.log("suggestionsList:", hospitalSuggestions);
-    console.log("reviewForm:", form);
-
-    // Vérifier si les éléments existent
-    if (!searchHospital || !hospitalSuggestions || !form) {
-        console.error("Un ou plusieurs éléments manquent dans le DOM.");
-        return;
-    }
-
-    let hospitals = []; // Stocker tous les hôpitaux ici
-
-    // Fonction pour charger les hôpitaux depuis l'API
-    function loadHospitals() {
-        fetch("/api/hospitals")
-            .then(response => response.json())
-            .then(data => {
-                console.log("Données des hôpitaux :", data);  // Affiche les données dans la console
-                hospitals = data; // Sauvegarder les hôpitaux dans la variable
-            })
-            .catch(error => console.error("Erreur lors du chargement des hôpitaux :", error));
-    }
-
-    // Fonction pour filtrer les hôpitaux en fonction de la recherche
-    function filterHospitals(searchValue) {
-        hospitalSuggestions.innerHTML = ""; // Vider la liste des suggestions
-
-        // Si la recherche est vide, ne rien afficher
-        if (!searchValue.trim()) {
-            hospitalSuggestions.classList.add("hidden");
-            return;
-        }
-
-        // Filtrer les hôpitaux qui correspondent à la recherche
-        const filteredHospitals = hospitals.filter(hospital =>
-            hospital.name.toLowerCase().includes(searchValue.toLowerCase())
-        );
-
-        // Si des hôpitaux sont trouvés, les afficher
-        if (filteredHospitals.length > 0) {
-            hospitalSuggestions.classList.remove("hidden");
-
-            filteredHospitals.forEach(hospital => {
-                const li = document.createElement("li");
-                li.textContent = hospital.name;
-                li.classList.add("cursor-pointer", "px-2", "py-1", "hover:bg-[#f1f1f1]");
-                li.onclick = () => selectHospital(hospital);
-
-                hospitalSuggestions.appendChild(li);
-            });
+// Fonction pour récupérer les hôpitaux en fonction de la recherche
+async function searchHospitals(query) {
+    try {
+        // Modifier l'URL pour utiliser la route de recherche définie
+        const response = await fetch(`/api/hospitals/search?query=${query}`);
+        const data = await response.json();
+        
+        if (data.success) {
+            displayHospitalSuggestions(data.hospitals); // Afficher les suggestions
         } else {
-            hospitalSuggestions.classList.add("hidden");
+            console.error('Erreur lors de la recherche des hôpitaux');
         }
+    } catch (error) {
+        console.error('Erreur de connexion:', error);
     }
+}
 
-    // Sélectionner un hôpital dans la liste des suggestions
-    function selectHospital(hospital) {
-        searchHospital.value = hospital.name; // Remplir le champ de recherche
-        hospitalSuggestions.classList.add("hidden"); // Masquer la liste des suggestions
+// Fonction pour afficher les suggestions d'hôpitaux
+function displayHospitalSuggestions(hospitals) {
+    hospitalSuggestionsList.innerHTML = ''; // Vider la liste actuelle
+
+    if (hospitals.length > 0) {
+        hospitalSuggestionsList.classList.remove('hidden'); // Afficher la liste des suggestions
+        hospitals.forEach(hospital => {
+            const li = document.createElement('li');
+            li.textContent = hospital.name; // Le nom de l'hôpital
+            li.classList.add('py-2', 'px-4', 'cursor-pointer');
+            li.addEventListener('click', () => selectHospital(hospital)); // Sélectionner l'hôpital
+            hospitalSuggestionsList.appendChild(li);
+        });
+    } else {
+        hospitalSuggestionsList.classList.add('hidden'); // Masquer la liste si aucune suggestion
     }
+}
 
-    // Ajouter un écouteur d'événements pour la recherche
-    searchHospital.addEventListener("input", (event) => {
-        filterHospitals(event.target.value); // Appeler la fonction de filtrage lors de la saisie
-    });
+// Fonction pour sélectionner un hôpital dans la liste
+function selectHospital(hospital) {
+    searchHospitalInput.value = hospital.name; // Mettre le nom de l'hôpital dans le champ
+    hospitalSuggestionsList.classList.add('hidden'); // Masquer la liste des suggestions
+}
 
-    // Charger les hôpitaux à l'ouverture de la page
-    loadHospitals();
-
-    // Gestion de la soumission du formulaire
-    form.addEventListener("submit", (event) => {
-        const selectedHospital = searchHospital.value;
-        if (!selectedHospital) {
-            alert("Veuillez sélectionner un hôpital.");
-            event.preventDefault();
-        }
-    });
+// Event listener pour rechercher les hôpitaux en temps réel
+searchHospitalInput.addEventListener('input', (event) => {
+    const query = event.target.value.trim();
+    if (query.length >= 2) { // Démarrer la recherche après 2 caractères
+        searchHospitals(query);
+    } else {
+        hospitalSuggestionsList.classList.add('hidden'); // Masquer les suggestions si moins de 2 caractères
+    }
 });
-
-
-
-

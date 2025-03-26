@@ -11,6 +11,21 @@
             color: #119797;
             border: 2px solid #119797;
         }
+        #hospitalSuggestions {
+        max-height: 200px;
+        overflow-y: auto;
+        position: absolute;
+        z-index: 10;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #hospitalSuggestions li:hover {
+        background-color: #e5e7eb;
+    }
     </style>
 </head>
 <body class="h-screen w-full flex flex-col p-2" style="background-image: linear-gradient(rgba(4, 62, 39, 0.3), rgba(4, 62, 39, 0.3)), url('https://cdn.pixabay.com/photo/2023/11/30/11/47/ai-generated-8421436_1280.jpg'); background-size: cover; background-position: center;">
