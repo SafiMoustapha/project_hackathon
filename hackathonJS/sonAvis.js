@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const feedbackData = {
             nom: document.getElementById('nom').value,
             email: document.getElementById('email').value,
-            hopital: document.getElementById('hopital').value,
+            hopital: document.getElementById('searchHospital').value,
             hospitalId: document.getElementById('hospitalId').value,  // Assure-toi d'avoir ce champ dans ton formulaire
             avis: document.getElementById('avis').value,
             type_avis: document.getElementById('type_avis').value,
