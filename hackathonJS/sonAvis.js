@@ -84,10 +84,16 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
     
         const formData = new FormData(this);
-        const feedbackData = {};
-        formData.forEach((value, key) => {
-            feedbackData[key] = value;
-        });
+        // Récupérer les données du formulaire
+        const feedbackData = {
+            nom: document.getElementById('nom').value,
+            email: document.getElementById('email').value,
+            hopital: document.getElementById('hopital').value,
+            hospitalId: document.getElementById('hospitalId').value,  // Assure-toi d'avoir ce champ dans ton formulaire
+            avis: document.getElementById('avis').value,
+            type_avis: document.getElementById('type_avis').value,
+            note: document.getElementById('note').value,
+        };
     
         // Vérification avant l'envoi
         console.log("Données envoyées au serveur:");
@@ -96,6 +102,41 @@ document.addEventListener("DOMContentLoaded", () => {
         // ✅ Vérifier si hospitalId est bien rempli
         if (!feedbackData.hospitalId || feedbackData.hospitalId.trim() === '') {
             alert("Veuillez sélectionner un hôpital valide !");
+            return;
+        }
+
+        // ✅ Vérifier si le nom est bien rempli
+        if (!feedbackData.nom || feedbackData.nom.trim() === '') {
+            alert("Veuillez entrer votre nom !");
+            return;
+        }
+
+        // ✅ Vérifier si l'email est bien rempli
+        if (!feedbackData.email || feedbackData.email.trim() === '') {
+            alert("Veuillez entrer votre email !");
+            return;
+        }
+
+        // ✅ Vérifier si l'avis est bien rempli
+        if (!feedbackData.avis || feedbackData.avis.trim() === '') {
+            alert("Veuillez entrer votre avis !");
+            return;
+        }
+
+        // ✅ Vérifier si le type d'avis est bien rempli
+        if (!feedbackData.type_avis || feedbackData.type_avis.trim() === '') {
+            alert("Veuillez sélectionner un type d'avis !");
+            return;
+        }
+
+        // ✅ Vérifier si la note est bien remplie
+        if (!feedbackData.note || feedbackData.note.trim() === '') {
+            alert("Veuillez entrer une note !");
+            return;
+        }
+
+        if (feedbackData.hospitalId && feedbackData.hospitalId.trim() === '') {
+            alert("L'ID de l'hôpital est invalide !");
             return;
         }
     
