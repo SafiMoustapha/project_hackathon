@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
             feedbackData[key] = value;
         });
     
-        console.log("Données envoyées au serveur :", feedbackData);  // 🛠 Debug ici
+        console.log("Données envoyées au serveur:", JSON.stringify(feedbackData, null, 2));
     
         fetch('http://localhost:5000/api/feedback', {
             method: 'POST',
