@@ -84,6 +84,10 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
     
         const formData = new FormData(this);
+        const feedbackData = {};
+        formData.forEach((value, key) => {
+            feedbackData[key] = value;
+        });
     
         // Vérification avant l'envoi
         console.log("Données envoyées au serveur:");
