@@ -80,36 +80,36 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Soumettre le formulaire
-document.getElementById('reviewForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+    document.getElementById('reviewForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+    
+        const formData = new FormData(this);
+    
+        // Vérification avant l'envoi
+        console.log("Données envoyées au serveur:");
+        formData.forEach((value, key) => console.log(`${key}:`, value));
 
-    const formData = new FormData(this);
-    const feedbackData = {};
-
-    formData.forEach((value, key) => {
-        feedbackData[key] = value;
+        // ✅ Vérifier si hospitalId est bien rempli
+        if (!feedbackData.hospitalId || feedbackData.hospitalId.trim() === '') {
+            alert("Veuillez sélectionner un hôpital valide !");
+            return;
+        }
+    
+        // Envoyer en multipart/form-data au lieu de JSON
+        fetch('http://localhost:5000/api/feedback', {
+            method: 'POST',
+            body: formData // Pas besoin de headers Content-Type, il est défini automatiquement
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Avis soumis avec succès !');
+            } else {
+                alert('Erreur lors de la soumission de l\'avis');
+            }
+        })
+        .catch(error => console.error('Erreur de soumission de l\'avis:', error));
     });
-
-    // Vérification de la structure de feedbackData
-    console.log("Données envoyées au serveur:", JSON.stringify(feedbackData, null, 2));
-
-    // Soumettre les données à l'API
-    fetch('http://localhost:5000/api/feedback', {
-        method: 'POST',
-        body: JSON.stringify(feedbackData),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('Avis soumis avec succès !');
-        } else {
-            alert('Erreur lors de la soumission de l\'avis');
-        }
-    })
-    .catch(error => console.error('Erreur de soumission de l\'avis:', error));
-});
+    
     
 });
