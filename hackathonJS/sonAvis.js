@@ -82,14 +82,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // Soumettre le formulaire
     document.getElementById('reviewForm').addEventListener('submit', function(event) {
         event.preventDefault();
-
+    
         const formData = new FormData(this);
         const feedbackData = {};
         formData.forEach((value, key) => {
             feedbackData[key] = value;
         });
-
-        // Soumettre les données à l'API
+    
+        console.log("Données envoyées au serveur :", feedbackData);  // 🛠 Debug ici
+    
         fetch('http://localhost:5000/api/feedback', {
             method: 'POST',
             body: JSON.stringify(feedbackData),
@@ -107,4 +108,5 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(error => console.error('Erreur de soumission de l\'avis:', error));
     });
+    
 });
