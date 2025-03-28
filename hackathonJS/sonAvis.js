@@ -97,48 +97,68 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     console.log("ID final envoyé:", feedbackData.hospitalId);
     // Soumission du formulaire
-    document.getElementById('reviewForm').addEventListener('submit', function (event) {
+    document.getElementById('reviewForm').addEventListener('submit', function(event) {
         event.preventDefault();
-
+    
         const formData = new FormData(this);
         const feedbackData = {
-            nom: document.getElementById('nom').value.trim(),
-            email: document.getElementById('email').value.trim(),
-            hopital: hospitalInput.value.trim(),
-            hospitalId: hospitalIdInput.value.trim(),
-            avis: document.getElementById('avis').value.trim(),
-            type_avis: document.getElementById('type_avis').value.trim(),
-            note: document.getElementById('note').value.trim(),
+            nom: document.getElementById('nom').value,
+            email: document.getElementById('email').value,
+            hopital: document.getElementById('searchHospital').value,
+            hospitalId: document.getElementById('hospitalId').value,
+            avis: document.getElementById('avis').value,
+            type_avis: document.getElementById('type_avis').value,
+            note: document.getElementById('note').value,
         };
-
-        // Vérifications avant soumission
-        if (!feedbackData.nom || !feedbackData.email || !feedbackData.hopital ||
-            !feedbackData.hospitalId || !feedbackData.avis || !feedbackData.type_avis || !feedbackData.note) {
-            alert("Veuillez remplir tous les champs !");
+    
+        console.log("Données envoyées au serveur:");
+        formData.forEach((value, key) => console.log(`${key}:`, value));
+    
+        // Vérifications des champs
+        if (!feedbackData.hospitalId || feedbackData.hospitalId.trim() === '') {
+            alert("Veuillez sélectionner un hôpital valide !");
             return;
         }
-
-        console.log("Données envoyées au serveur:", feedbackData);
-
+        if (!feedbackData.nom || feedbackData.nom.trim() === '') {
+            alert("Veuillez entrer votre nom !");
+            return;
+        }
+        if (!feedbackData.email || feedbackData.email.trim() === '') {
+            alert("Veuillez entrer votre email !");
+            return;
+        }
+        if (!feedbackData.avis || feedbackData.avis.trim() === '') {
+            alert("Veuillez entrer votre avis !");
+            return;
+        }
+        if (!feedbackData.type_avis || feedbackData.type_avis.trim() === '') {
+            alert("Veuillez sélectionner un type d'avis !");
+            return;
+        }
+        if (!feedbackData.note || feedbackData.note.trim() === '') {
+            alert("Veuillez entrer une note !");
+            return;
+        }
+    
         // Envoi des données au serveur
         fetch('http://localhost:5000/api/feedback', {
             method: 'POST',
             body: formData
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Afficher le message de succès
-                    const successMessage = document.getElementById('successMessage');
-                    successMessage.classList.remove('hidden');  // Afficher le message
-                    successMessage.innerText = 'Votre avis a été pris en compte, merci !';
-
-                    // Réinitialiser le formulaire (optionnel)
-                    document.getElementById('reviewForm').reset();
-                } else {
-                    alert('Erreur lors de la soumission de l\'avis');
-                }
-            })
-            .catch(error => console.error('Erreur de soumission de l\'avis:', error));
-    });
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Afficher le message de succès
+                const successMessage = document.getElementById('successMessage');
+                successMessage.classList.remove('hidden');  // Afficher le message
+                successMessage.innerText = 'Votre avis a été pris en compte, merci !';
+    
+                // Réinitialiser le formulaire (optionnel)
+                document.getElementById('reviewForm').reset();
+            } else {
+                alert('Erreur lors de la soumission de l\'avis');
+            }
+        })
+        .catch(error => console.error('Erreur de soumission de l\'avis:', error));
+    });    
 });
