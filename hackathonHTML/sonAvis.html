@@ -13,6 +13,7 @@
         }
         #hospitalSuggestions {
         max-height: 200px;
+        width: 200px;
         overflow-y: auto;
         position: absolute;
         z-index: 10;
@@ -87,7 +88,7 @@
                 <label for="hopital" class="block text-gray-700 font-semibold">Nom de l'hôpital</label>
                 <input style="border: 1px solid black; border-radius: 5px; outline: none; padding-left: 4px;" type="text" id="searchHospital" name="hopital" placeholder="Rechercher un hôpital" class="w-full py-2 mb-4 border-1 border-black rounded-lg">
                 <!-- Liste de suggestions -->
-                <ul id="hospitalSuggestions" class="w-full py-2 mt-2 border-1 border-black rounded-lg hidden">
+                <ul id="hospitalSuggestions" class="py-2 mt-2 border-1 border-black rounded-lg hidden">
                     <!-- Les hôpitaux filtrés seront ajoutés ici -->
                 </ul>
                 <!-- Champ caché pour stocker l'ID de l'hôpital sélectionné -->
