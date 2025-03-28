@@ -48,30 +48,39 @@ deroulant22.addEventListener('click', () => {
 document.addEventListener("DOMContentLoaded", () => {
     const hospitalInput = document.getElementById('searchHospital');
     const suggestionsList = document.getElementById('hospitalSuggestions');
+    const hospitalIdInput = document.getElementById("hospitalId");
 
-    // Fonction de recherche des hôpitaux
+    // Fonction pour rechercher des hôpitaux
     hospitalInput.addEventListener('input', () => {
         const searchQuery = hospitalInput.value.trim().toLowerCase();
 
-        if (searchQuery) {
+        if (searchQuery.length > 2) {
             fetch(`http://localhost:5000/api/hospitals?search=${searchQuery}`)
                 .then(response => response.json())
                 .then(data => {
-                    // Afficher la liste des suggestions d'hôpitaux
-                    suggestionsList.innerHTML = ''; // Clear previous results
+                    suggestionsList.innerHTML = ''; // Effacer les anciennes suggestions
+
+                    if (data.hospitals.length === 0) {
+                        suggestionsList.classList.add('hidden');
+                        return;
+                    }
+
                     data.hospitals.forEach(hospital => {
                         const listItem = document.createElement('li');
                         listItem.textContent = hospital.name;
-                        listItem.classList.add('cursor-pointer', 'py-2', 'px-4');
+                        listItem.dataset.id = hospital._id; // Stocker l'ID de l'hôpital
+                        listItem.classList.add('cursor-pointer', 'py-2', 'px-4', 'hover:bg-gray-200');
+
                         listItem.addEventListener('click', () => {
                             hospitalInput.value = hospital.name;  // Remplir l'input avec le nom de l'hôpital
+                            hospitalIdInput.value = hospital._id; // Stocker l'ID dans l'input caché
                             suggestionsList.classList.add('hidden');  // Masquer la liste
                         });
+
                         suggestionsList.appendChild(listItem);
                     });
 
-                    // Afficher la liste si des résultats existent
-                    suggestionsList.classList.remove('hidden');
+                    suggestionsList.classList.remove('hidden'); // Afficher la liste
                 })
                 .catch(error => console.error('Erreur lors de la recherche des hôpitaux:', error));
         } else {
@@ -79,82 +88,52 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Soumettre le formulaire
+    // Cacher la liste si l'utilisateur clique en dehors
+    document.addEventListener("click", function (event) {
+        if (!hospitalInput.contains(event.target) && !suggestionsList.contains(event.target)) {
+            suggestionsList.classList.add("hidden");
+        }
+    });
+
+    // Soumission du formulaire
     document.getElementById('reviewForm').addEventListener('submit', function(event) {
         event.preventDefault();
     
         const formData = new FormData(this);
-        // Récupérer les données du formulaire
         const feedbackData = {
-            nom: document.getElementById('nom').value,
-            email: document.getElementById('email').value,
-            hopital: document.getElementById('searchHospital').value,
-            hospitalId: document.getElementById('hospitalId').value,  // Assure-toi d'avoir ce champ dans ton formulaire
-            avis: document.getElementById('avis').value,
-            type_avis: document.getElementById('type_avis').value,
-            note: document.getElementById('note').value,
+            nom: document.getElementById('nom').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            hopital: hospitalInput.value.trim(),
+            hospitalId: hospitalIdInput.value.trim(),
+            avis: document.getElementById('avis').value.trim(),
+            type_avis: document.getElementById('type_avis').value.trim(),
+            note: document.getElementById('note').value.trim(),
         };
-    
-        // Vérification avant l'envoi
-        console.log("Données envoyées au serveur:");
-        formData.forEach((value, key) => console.log(`${key}:`, value));
 
-        // ✅ Vérifier si hospitalId est bien rempli
-        if (!feedbackData.hospitalId || feedbackData.hospitalId.trim() === '') {
-            alert("Veuillez sélectionner un hôpital valide !");
+        // Vérifications avant soumission
+        if (!feedbackData.nom || !feedbackData.email || !feedbackData.hopital ||
+            !feedbackData.hospitalId || !feedbackData.avis || !feedbackData.type_avis || !feedbackData.note) {
+            alert("Veuillez remplir tous les champs !");
             return;
         }
 
-        // ✅ Vérifier si le nom est bien rempli
-        if (!feedbackData.nom || feedbackData.nom.trim() === '') {
-            alert("Veuillez entrer votre nom !");
-            return;
-        }
+        console.log("Données envoyées au serveur:", feedbackData);
 
-        // ✅ Vérifier si l'email est bien rempli
-        if (!feedbackData.email || feedbackData.email.trim() === '') {
-            alert("Veuillez entrer votre email !");
-            return;
-        }
-
-        // ✅ Vérifier si l'avis est bien rempli
-        if (!feedbackData.avis || feedbackData.avis.trim() === '') {
-            alert("Veuillez entrer votre avis !");
-            return;
-        }
-
-        // ✅ Vérifier si le type d'avis est bien rempli
-        if (!feedbackData.type_avis || feedbackData.type_avis.trim() === '') {
-            alert("Veuillez sélectionner un type d'avis !");
-            return;
-        }
-
-        // ✅ Vérifier si la note est bien remplie
-        if (!feedbackData.note || feedbackData.note.trim() === '') {
-            alert("Veuillez entrer une note !");
-            return;
-        }
-
-        if (feedbackData.hospitalId && feedbackData.hospitalId.trim() === '') {
-            alert("L'ID de l'hôpital est invalide !");
-            return;
-        }
-    
-        // Envoyer en multipart/form-data au lieu de JSON
+        // Envoi du formulaire
         fetch('http://localhost:5000/api/feedback', {
             method: 'POST',
-            body: formData // Pas besoin de headers Content-Type, il est défini automatiquement
+            body: formData 
         })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
                 alert('Avis soumis avec succès !');
+                document.getElementById('reviewForm').reset(); // Réinitialiser le formulaire
+                hospitalIdInput.value = ''; // Réinitialiser l'ID de l'hôpital
             } else {
                 alert('Erreur lors de la soumission de l\'avis');
             }
         })
         .catch(error => console.error('Erreur de soumission de l\'avis:', error));
     });
-    
-    
 });
