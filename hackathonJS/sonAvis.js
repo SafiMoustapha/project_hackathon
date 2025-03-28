@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
             note: document.getElementById('note').value,
         };
 
-        console.log("Données envoyées au serveur:", feedbackData);
+        console.log("Données envoyées au serveur:", feedbackData); // Placer ici après la création de feedbackData
 
         // Vérifications des champs
         if (!feedbackData.hospitalId || feedbackData.hospitalId.trim() === '') {
