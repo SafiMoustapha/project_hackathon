@@ -59,8 +59,15 @@ document.addEventListener("DOMContentLoaded", () => {
             fetch(`https://backendhackathon-production.up.railway.app/api/hospitals?search=${searchQuery}`)
                 .then(response => response.json())
                 .then(data => {
-                    suggestionsList.innerHTML = ''; // Effacer les anciennes suggestions
                     console.log("Réponse API:", data); // Voir ce que l'API renvoie
+                    suggestionsList.innerHTML = ''; // Effacer les anciennes suggestions
+
+                    // Vérification si la clé 'hospitals' est présente dans la réponse
+                    if (!data.hospitals || !Array.isArray(data.hospitals)) {
+                        console.error("Erreur: la réponse de l'API ne contient pas 'hospitals'. Réponse complète:", data);
+                        return;
+                    }
+
                     if (data.hospitals.length === 0) {
                         suggestionsList.classList.add('hidden');
                         return;
@@ -112,44 +119,41 @@ document.addEventListener("DOMContentLoaded", () => {
             note: document.getElementById('note').value,
         };
 
-        console.log("Données envoyées au serveur:", feedbackData); // Placer ici après la création de feedbackData
+        console.log("Données envoyées au serveur:", feedbackData); // DEBUG
 
-        // Vérifications des champs
-        if (!feedbackData.hospitalId || feedbackData.hospitalId.trim() === '') {
+        // Vérifications des champs obligatoires
+        if (!feedbackData.hospitalId) {
             alert("Veuillez sélectionner un hôpital valide !");
             return;
         }
-        if (!feedbackData.nom || feedbackData.nom.trim() === '') {
+        if (!feedbackData.nom.trim()) {
             alert("Veuillez entrer votre nom !");
             return;
         }
-        if (!feedbackData.email || feedbackData.email.trim() === '') {
+        if (!feedbackData.email.trim()) {
             alert("Veuillez entrer votre email !");
             return;
         }
-        if (!feedbackData.avis || feedbackData.avis.trim() === '') {
+        if (!feedbackData.avis.trim()) {
             alert("Veuillez entrer votre avis !");
             return;
         }
-        if (!feedbackData.type_avis || feedbackData.type_avis.trim() === '') {
+        if (!feedbackData.type_avis.trim()) {
             alert("Veuillez sélectionner un type d'avis !");
             return;
         }
-        if (!feedbackData.note || feedbackData.note.trim() === '') {
+        if (!feedbackData.note.trim()) {
             alert("Veuillez entrer une note !");
             return;
         }
 
-        // Créer un FormData pour envoyer les données
+        // Création du FormData
         const formData = new FormData();
-        formData.append('nom', feedbackData.nom);
-        formData.append('email', feedbackData.email);
-        formData.append('hopital', feedbackData.hopital);
-        formData.append('hospitalId', feedbackData.hospitalId);
-        formData.append('avis', feedbackData.avis);
-        formData.append('type_avis', feedbackData.type_avis);
-        formData.append('note', feedbackData.note);
-        // Si un document est sélectionné (par exemple pour l'upload)
+        Object.keys(feedbackData).forEach(key => {
+            formData.append(key, feedbackData[key]);
+        });
+
+        // Ajouter un fichier si l'utilisateur a uploadé un document
         const documentInput = document.getElementById('document');
         if (documentInput.files.length > 0) {
             formData.append('document', documentInput.files[0]);
@@ -163,18 +167,14 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // Afficher le message de succès
                 alert('Votre avis a été pris en compte !');
-                const successMessage = document.getElementById('successMessage');
-                successMessage.classList.remove('hidden');  // Afficher le message
-                successMessage.innerText = 'Votre avis a été pris en compte, merci !';
-
-                // Réinitialiser le formulaire (optionnel)
-                document.getElementById('reviewForm').reset();
+                document.getElementById('successMessage').classList.remove('hidden');
+                document.getElementById('successMessage').innerText = 'Votre avis a été pris en compte, merci !';
+                document.getElementById('reviewForm').reset(); // Réinitialisation du formulaire
             } else {
                 alert('Erreur lors de la soumission de l\'avis');
             }
         })
         .catch(error => console.error('Erreur de soumission de l\'avis:', error));
-    });    
+    });
 });
