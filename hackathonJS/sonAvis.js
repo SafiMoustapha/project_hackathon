@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const searchQuery = hospitalInput.value.trim().toLowerCase();
 
         if (searchQuery.length > 2) {
-            fetch(`http://localhost:5000/api/hospitals?search=${searchQuery}`)
+            fetch(`https://backendhackathon-production.up.railway.app/api/hospitals?search=${searchQuery}`)
                 .then(response => response.json())
                 .then(data => {
                     suggestionsList.innerHTML = ''; // Effacer les anciennes suggestions
@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Envoi des données au serveur
-        fetch('http://localhost:5000/api/feedback', {
+        fetch('https://backendhackathon-production.up.railway.app/api/feedback', {
             method: 'POST',
             body: formData
         })
