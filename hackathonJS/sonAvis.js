@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 .then(response => response.json())
                 .then(data => {
                     suggestionsList.innerHTML = ''; // Effacer les anciennes suggestions
-
+                    console.log("Réponse API:", data); // Voir ce que l'API renvoie
                     if (data.hospitals.length === 0) {
                         suggestionsList.classList.add('hidden');
                         return;
@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         listItem.addEventListener('click', () => {
                             hospitalInput.value = hospital.name;  // Remplir l'input avec le nom de l'hôpital
                             hospitalIdInput.value = hospital._id; // Stocker l'ID dans l'input caché
+                            console.log("Hôpital sélectionné:", hospital.name, " | ID:", hospital._id); // Debugging
                             suggestionsList.classList.add('hidden');  // Masquer la liste
                         });
 
@@ -94,11 +95,11 @@ document.addEventListener("DOMContentLoaded", () => {
             suggestionsList.classList.add("hidden");
         }
     });
-
+    console.log("ID final envoyé:", feedbackData.hospitalId);
     // Soumission du formulaire
-    document.getElementById('reviewForm').addEventListener('submit', function(event) {
+    document.getElementById('reviewForm').addEventListener('submit', function (event) {
         event.preventDefault();
-    
+
         const formData = new FormData(this);
         const feedbackData = {
             nom: document.getElementById('nom').value.trim(),
@@ -119,21 +120,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
         console.log("Données envoyées au serveur:", feedbackData);
 
-        // Envoi du formulaire
+        // Envoi des données au serveur
         fetch('http://localhost:5000/api/feedback', {
             method: 'POST',
-            body: formData 
+            body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Avis soumis avec succès !');
-                document.getElementById('reviewForm').reset(); // Réinitialiser le formulaire
-                hospitalIdInput.value = ''; // Réinitialiser l'ID de l'hôpital
-            } else {
-                alert('Erreur lors de la soumission de l\'avis');
-            }
-        })
-        .catch(error => console.error('Erreur de soumission de l\'avis:', error));
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Afficher le message de succès
+                    const successMessage = document.getElementById('successMessage');
+                    successMessage.classList.remove('hidden');  // Afficher le message
+                    successMessage.innerText = 'Votre avis a été pris en compte, merci !';
+
+                    // Réinitialiser le formulaire (optionnel)
+                    document.getElementById('reviewForm').reset();
+                } else {
+                    alert('Erreur lors de la soumission de l\'avis');
+                }
+            })
+            .catch(error => console.error('Erreur de soumission de l\'avis:', error));
     });
 });
