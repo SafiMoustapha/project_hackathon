@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Fonction pour rechercher des hôpitaux
     hospitalInput.addEventListener('input', () => {
         const searchQuery = hospitalInput.value.trim().toLowerCase();
+        console.log("Recherche envoyée au serveur:", searchQuery); // DEBUG
 
         if (searchQuery.length > 2) {
             fetch(`https://backendhackathon-production.up.railway.app/api/hospitals?search=${searchQuery}`)
