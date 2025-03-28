@@ -53,21 +53,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Fonction pour rechercher des hôpitaux
     hospitalInput.addEventListener('input', () => {
         const searchQuery = hospitalInput.value.trim().toLowerCase();
-        console.log("Recherche envoyée au serveur:", searchQuery); // DEBUG
 
         if (searchQuery.length > 2) {
-            fetch(`https://backendhackathon-production.up.railway.app/api/hospitals?search=${searchQuery}`)
+            fetch(`http://localhost:5000/api/hospitals?search=${searchQuery}`)
                 .then(response => response.json())
                 .then(data => {
-                    console.log("Réponse API:", data); // Voir ce que l'API renvoie
                     suggestionsList.innerHTML = ''; // Effacer les anciennes suggestions
-
-                    // Vérification si la clé 'hospitals' est présente dans la réponse
-                    if (!data.hospitals || !Array.isArray(data.hospitals)) {
-                        console.error("Erreur: la réponse de l'API ne contient pas 'hospitals'. Réponse complète:", data);
-                        return;
-                    }
-
+                    console.log("Réponse API:", data); // Voir ce que l'API renvoie
                     if (data.hospitals.length === 0) {
                         suggestionsList.classList.add('hidden');
                         return;
@@ -119,62 +111,69 @@ document.addEventListener("DOMContentLoaded", () => {
             note: document.getElementById('note').value,
         };
 
-        console.log("Données envoyées au serveur:", feedbackData); // DEBUG
+        console.log("Données envoyées au serveur:", feedbackData); // Placer ici après la création de feedbackData
 
-        // Vérifications des champs obligatoires
-        if (!feedbackData.hospitalId) {
+        // Vérifications des champs
+        if (!feedbackData.hospitalId || feedbackData.hospitalId.trim() === '') {
             alert("Veuillez sélectionner un hôpital valide !");
             return;
         }
-        if (!feedbackData.nom.trim()) {
+        if (!feedbackData.nom || feedbackData.nom.trim() === '') {
             alert("Veuillez entrer votre nom !");
             return;
         }
-        if (!feedbackData.email.trim()) {
+        if (!feedbackData.email || feedbackData.email.trim() === '') {
             alert("Veuillez entrer votre email !");
             return;
         }
-        if (!feedbackData.avis.trim()) {
+        if (!feedbackData.avis || feedbackData.avis.trim() === '') {
             alert("Veuillez entrer votre avis !");
             return;
         }
-        if (!feedbackData.type_avis.trim()) {
+        if (!feedbackData.type_avis || feedbackData.type_avis.trim() === '') {
             alert("Veuillez sélectionner un type d'avis !");
             return;
         }
-        if (!feedbackData.note.trim()) {
+        if (!feedbackData.note || feedbackData.note.trim() === '') {
             alert("Veuillez entrer une note !");
             return;
         }
 
-        // Création du FormData
+        // Créer un FormData pour envoyer les données
         const formData = new FormData();
-        Object.keys(feedbackData).forEach(key => {
-            formData.append(key, feedbackData[key]);
-        });
-
-        // Ajouter un fichier si l'utilisateur a uploadé un document
+        formData.append('nom', feedbackData.nom);
+        formData.append('email', feedbackData.email);
+        formData.append('hopital', feedbackData.hopital);
+        formData.append('hospitalId', feedbackData.hospitalId);
+        formData.append('avis', feedbackData.avis);
+        formData.append('type_avis', feedbackData.type_avis);
+        formData.append('note', feedbackData.note);
+        // Si un document est sélectionné (par exemple pour l'upload)
         const documentInput = document.getElementById('document');
         if (documentInput.files.length > 0) {
             formData.append('document', documentInput.files[0]);
         }
 
         // Envoi des données au serveur
-        fetch('https://backendhackathon-production.up.railway.app/api/feedback', {
+        fetch('http://localhost:5000/api/feedback', {
             method: 'POST',
             body: formData
         })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
+                // Afficher le message de succès
                 alert('Votre avis a été pris en compte !');
-                document.getElementById('successMessage').classList.remove('hidden');
-                document.getElementById('successMessage').innerText = 'Votre avis a été pris en compte, merci !';
-                document.getElementById('reviewForm').reset(); // Réinitialisation du formulaire
+                const successMessage = document.getElementById('successMessage');
+                successMessage.classList.remove('hidden');  // Afficher le message
+                successMessage.innerText = 'Votre avis a été pris en compte, merci !';
+
+                // Réinitialiser le formulaire (optionnel)
+                document.getElementById('reviewForm').reset();
             } else {
                 alert('Erreur lors de la soumission de l\'avis');
             }
         })
         .catch(error => console.error('Erreur de soumission de l\'avis:', error));
-    });
+    });    
 });
