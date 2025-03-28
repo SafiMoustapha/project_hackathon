@@ -95,12 +95,12 @@ document.addEventListener("DOMContentLoaded", () => {
             suggestionsList.classList.add("hidden");
         }
     });
-    console.log("ID final envoyé:", feedbackData.hospitalId);
+
     // Soumission du formulaire
     document.getElementById('reviewForm').addEventListener('submit', function(event) {
         event.preventDefault();
-    
-        const formData = new FormData(this);
+
+        // Créer un objet feedbackData avec les valeurs du formulaire
         const feedbackData = {
             nom: document.getElementById('nom').value,
             email: document.getElementById('email').value,
@@ -110,10 +110,9 @@ document.addEventListener("DOMContentLoaded", () => {
             type_avis: document.getElementById('type_avis').value,
             note: document.getElementById('note').value,
         };
-    
-        console.log("Données envoyées au serveur:");
-        formData.forEach((value, key) => console.log(`${key}:`, value));
-    
+
+        console.log("Données envoyées au serveur:", feedbackData);
+
         // Vérifications des champs
         if (!feedbackData.hospitalId || feedbackData.hospitalId.trim() === '') {
             alert("Veuillez sélectionner un hôpital valide !");
@@ -139,7 +138,22 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Veuillez entrer une note !");
             return;
         }
-    
+
+        // Créer un FormData pour envoyer les données
+        const formData = new FormData();
+        formData.append('nom', feedbackData.nom);
+        formData.append('email', feedbackData.email);
+        formData.append('hopital', feedbackData.hopital);
+        formData.append('hospitalId', feedbackData.hospitalId);
+        formData.append('avis', feedbackData.avis);
+        formData.append('type_avis', feedbackData.type_avis);
+        formData.append('note', feedbackData.note);
+        // Si un document est sélectionné (par exemple pour l'upload)
+        const documentInput = document.getElementById('document');
+        if (documentInput.files.length > 0) {
+            formData.append('document', documentInput.files[0]);
+        }
+
         // Envoi des données au serveur
         fetch('http://localhost:5000/api/feedback', {
             method: 'POST',
@@ -153,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const successMessage = document.getElementById('successMessage');
                 successMessage.classList.remove('hidden');  // Afficher le message
                 successMessage.innerText = 'Votre avis a été pris en compte, merci !';
-    
+
                 // Réinitialiser le formulaire (optionnel)
                 document.getElementById('reviewForm').reset();
             } else {
