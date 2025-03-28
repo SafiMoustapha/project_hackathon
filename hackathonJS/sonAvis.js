@@ -149,6 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             if (data.success) {
                 // Afficher le message de succès
+                alert('Votre avis a été pris en compte !');
                 const successMessage = document.getElementById('successMessage');
                 successMessage.classList.remove('hidden');  // Afficher le message
                 successMessage.innerText = 'Votre avis a été pris en compte, merci !';
